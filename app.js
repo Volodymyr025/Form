@@ -111,7 +111,6 @@ const deleteError = (arr) => {
 //first Name
 
 const ruleName = () => {
-  confirm = true;
   min_max(
     firstN,
     CONFIG.first_name.min,
