@@ -240,6 +240,16 @@ const checkDuplicatePassword = () => {
   }
 };
 
+//user Data
+const USER_DATA = {
+  user_name: firstN.value,
+  user_last_name: lastN.value,
+  email: email.value,
+  phone: phone.value,
+  password: password.value,
+  confirm_password: confirm_password.value,
+};
+
 //check on error
 const deleteAllError = () => {
   label.forEach((element, i) => {
@@ -268,16 +278,6 @@ const cleanValue = () => {
   label.forEach((element) => {
     element.lastElementChild.value = "";
   });
-};
-
-//user Data
-const USER_DATA = {
-  user_name: firstN.value,
-  user_last_name: lastN.value,
-  email: email.value,
-  phone: phone.value,
-  password: password.value,
-  confirm_password: confirm_password.value,
 };
 
 // button reset
