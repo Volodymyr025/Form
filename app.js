@@ -118,6 +118,9 @@ const ruleName = () => {
     CONFIG.first_name.length,
     CONFIG.first_name.err
   );
+  if (includeNumber(firstN.value)) {
+    addError(CONFIG.first_name.length, CONFIG.first_name.errNum);
+  }
 };
 
 const onChangeName = () => {
@@ -125,9 +128,6 @@ const onChangeName = () => {
   spaces(firstN);
   deleteError(CONFIG.first_name.length);
   ruleName();
-  if (includeNumber(firstN.value)) {
-    addError(CONFIG.first_name.length, CONFIG.first_name.errNum);
-  }
 };
 
 //last Name
@@ -139,6 +139,9 @@ const ruleLastName = () => {
     CONFIG.last_name.length,
     CONFIG.last_name.err
   );
+  if (onlyNumber(lastN.value)) {
+    addError(CONFIG.last_name.length, CONFIG.last_name.errNum);
+  }
 };
 
 const onChangeLastName = () => {
@@ -146,9 +149,6 @@ const onChangeLastName = () => {
   spaces(lastN);
   deleteError(CONFIG.last_name.length);
   ruleLastName();
-  if (onlyNumber(lastN.value)) {
-    addError(CONFIG.last_name.length, CONFIG.last_name.errNum);
-  }
 };
 //Email
 const checkEmail = (text, arr, textError) => {
