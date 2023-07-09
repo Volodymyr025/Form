@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="app.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="app.js" defer></script>
+  <body>
+    <div id="background">
+      <form id="register_form">
+        <h1>Registration Form</h1>
+        <label for="first-name" class="label"
+          >First Name
+          <input
+            type="text"
+            name="first-name"
+            placeholder="First Name"
+            id="first-name"
+          />
+        </label>
+        <label for="last-name" class="label"
+          >Last Name
+          <input
+            type="text"
+            name="last-name"
+            placeholder="Last Name"
+            id="last-name"
+          />
+        </label>
+        <label for="email" class="label"
+          >Email
+          <input type="email" name="email" placeholder="Email" id="email" />
+        </label>
+        <label for="phone-number" class="phone label"
+          >Phone
+          <select>
+            <option value="USA">USA</option>
+            <option value="UA">UA</option></select
+          ><input
+            type="text"
+            name="phone-number"
+            placeholder="Phone"
+            id="phone"
+          />
+        </label>
+        <label for="date" class="label"
+          >Day of birth
+          <input type="date" name="date" placeholder="Day of birth" id="date" />
+        </label>
+        <label for="password" class="label"
+          >Password
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            id="password"
+          />
+        </label>
+        <label for="confirm-password" class="label"
+          >Confirm-password
+          <input
+            type="password"
+            name="confirm-password"
+            placeholder="Confirm-password"
+            id="confirm-password"
+          />
+        </label>
+        <div id="button">
+          <button id="sub" type="submit">Submit</button>
+          <button id="res">Reset</button>
+        </div>
+      </form>
+      <!-- <img src="./img/done.png" alt="done"> -->
+    </div>
+  </body>
+</html>
