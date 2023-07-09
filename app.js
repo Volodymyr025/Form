@@ -252,11 +252,11 @@ const deleteAllError = () => {
 const errorAndEmpty = () => {
   label.forEach((element) => {
     if (element.lastElementChild.value === "") {
-      addError(6, "Заповсіть корректно всі поля");
+      addError(6, "Заповніть корректно всі поля");
     }
   });
   if (btnSub.querySelector("p")) {
-    addError(6, "Заповсіть корректно всі поля");
+    addError(6, "Заповніть корректно всі поля");
     return;
   }
   console.log(USER_DATA);
