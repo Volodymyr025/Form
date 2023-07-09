@@ -63,7 +63,7 @@ const btnRes = document.getElementById("res");
 
 let date = document.getElementById("date");
 
-const regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+const regexEmail = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
 const regexStr = new RegExp("[a-zA-Z]");
 const regexPassword = new RegExp(
   "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,20}$"
@@ -78,12 +78,7 @@ const upperCase = (text) => {
 const spaces = (text) => {
   text.value = text.value.split(" ").join("");
 };
-const onlyNumber = (myString) => {
-  if (/\d/.test(myString)) {
-    return true;
-  }
-};
-const onlyString = (myString) => {
+const includeNumber = (myString) => {
   if (/\d/.test(myString)) {
     return true;
   }
@@ -131,7 +126,7 @@ const onChangeName = () => {
   spaces(firstN);
   deleteError(CONFIG.first_name.length);
   ruleName();
-  if (onlyNumber(firstN.value)) {
+  if (includeNumber(firstN.value)) {
     addError(CONFIG.first_name.length, CONFIG.first_name.errNum);
   }
 };
@@ -158,7 +153,7 @@ const onChangeLastName = () => {
 };
 //Email
 const checkEmail = (text, arr, textError) => {
-  if (!regex.test(text.value)) {
+  if (!regexEmail.test(text.value)) {
     addError(arr, textError);
   }
 };
