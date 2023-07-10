@@ -120,6 +120,7 @@ const ruleName = () => {
   );
   if (includeNumber(firstN.value)) {
     addError(CONFIG.first_name.length, CONFIG.first_name.errNum);
+    return
   }
 };
 
@@ -141,6 +142,7 @@ const ruleLastName = () => {
   );
   if (includeNumber(lastN.value)) {
     addError(CONFIG.last_name.length, CONFIG.last_name.errNum);
+    return
   }
 };
 
@@ -154,6 +156,7 @@ const onChangeLastName = () => {
 const checkEmail = (text, arr, textError) => {
   if (!regexEmail.test(text.value)) {
     addError(arr, textError);
+    return
   }
 };
 const onChangeEmail = () => {
@@ -300,9 +303,7 @@ const errorAndEmpty = () => {
     addError(6, "Заповніть корректно всі поля");
     return;
   }
-  getUserData();
   cleanValue();
-  done();
 };
 
 const cleanValue = () => {
@@ -322,7 +323,9 @@ const reset = (e) => {
 const submitHeandler = (e) => {
   e.preventDefault();
   deleteError(CONFIG.confirm_password.length);
+  getUserData();
   errorAndEmpty();
+  done();
 };
 
 //add img done
