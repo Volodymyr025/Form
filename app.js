@@ -246,7 +246,10 @@ const checkPaswword = (text, arr, textError) => {
     addError(arr, textError);
     return;
   }
-  if (password.value === firstN.value || password.value === lastN.value) {
+  if (
+    password.value.includes(firstN.value) ||
+    password.value.includes(lastN.value)
+  ) {
     addError(arr, CONFIG.password.errDubl);
     return;
   }
@@ -262,20 +265,23 @@ const checkDuplicatePassword = () => {
   deleteError(CONFIG.confirm_password.length);
   if (password.value !== confirm_password.value) {
     addError(CONFIG.confirm_password.length, CONFIG.confirm_password.err);
+    return;
   }
 };
 
 //user Data
-const USER_DATA = {
-  user_name: firstN.value,
-  user_last_name: lastN.value,
-  email: email.value,
-  phone: phone.value,
-  password: password.value,
-  confirm_password: confirm_password.value,
+const getUserData = () => {
+  const USER_DATA = {
+    user_name: firstN.value,
+    user_last_name: lastN.value,
+    email: email.value,
+    phone: phone.value,
+    password: password.value,
+    confirm_password: confirm_password.value,
+  };
+  console.log(USER_DATA);
 };
-
-//check on error
+//check on error all form
 const deleteAllError = () => {
   label.forEach((element, i) => {
     if (element.querySelector("p")) {
@@ -294,7 +300,7 @@ const errorAndEmpty = () => {
     addError(6, "Заповніть корректно всі поля");
     return;
   }
-  console.log(USER_DATA);
+  getUserData();
   cleanValue();
   done();
 };
