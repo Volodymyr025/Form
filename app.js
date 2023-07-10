@@ -4,14 +4,14 @@ const CONFIG = {
     max: 25,
     length: 0,
     err: "Імя повино складатися з 3 до 25 символів",
-    errNum: "В імені знаходитись цифри",
+    errNum: "Ім'я повинно складатися лише з букв латинського алфавіту",
   },
   last_name: {
     min: 3,
     max: 25,
     length: 1,
     err: "Прізвище повино складатися з 3 до 25 символів",
-    errNum: "В прізвищі знаходитись цифри",
+    errNum: "Прізвище повинно складатися лише з букв латинського алфавіту",
   },
   email: {
     length: 2,
@@ -41,7 +41,7 @@ const CONFIG = {
   },
   password: {
     length: 5,
-    err: "Пароль повинен бути від 6 до 25 символів одна велика буква один символ",
+    err: "Пароль повинен бути від 6 до 25 знаків одна велика буква один символ(@!/.,)",
     errDubl: "Пароль не повинен містити Імя чи Прізвище",
   },
   confirm_password: {
@@ -139,7 +139,7 @@ const ruleLastName = () => {
     CONFIG.last_name.length,
     CONFIG.last_name.err
   );
-  if (onlyNumber(lastN.value)) {
+  if (includeNumber(lastN.value)) {
     addError(CONFIG.last_name.length, CONFIG.last_name.errNum);
   }
 };
@@ -162,12 +162,7 @@ const onChangeEmail = () => {
 };
 
 //Phone
-const checkPhone = () => {
-  deleteError(CONFIG.phone.length);
-  if (regexStr.test(phone.value)) {
-    addError(CONFIG.phone.length, CONFIG.phone.errNum);
-    return;
-  }
+const usaRule = () => {
   if (select.value === "USA") {
     min_max(
       phone,
@@ -176,7 +171,11 @@ const checkPhone = () => {
       CONFIG.phone.length,
       CONFIG.phone.USA.err
     );
-  } else
+    return;
+  }
+};
+const uaRule = () => {
+  if (select.value === "UA") {
     min_max(
       phone,
       CONFIG.phone.UA.min,
@@ -184,17 +183,42 @@ const checkPhone = () => {
       CONFIG.phone.length,
       CONFIG.phone.UA.err
     );
+    return;
+  }
 };
-const changeOption = (e) => {
+const onlyNumber = () => {
+  if (regexStr.test(phone.value)) {
+    addError(CONFIG.phone.length, CONFIG.phone.errNum);
+    return;
+  }
+};
+const checkPhone = () => {
+  deleteError(CONFIG.phone.length);
+  onlyNumber();
+  usaRule();
+  uaRule();
+};
+//seclec country number
+const selectUSA = (e) => {
   if (e.target.value === "USA") {
     select.className = "usa";
     phone.value = "+1";
     deleteError(CONFIG.phone.length);
-  } else if (e.target.value === "UA") {
+    return;
+  }
+};
+const selectUA = (e) => {
+  if (e.target.value === "UA") {
     select.className = "ua";
     phone.value = "+380";
     deleteError(CONFIG.phone.length);
+    return;
   }
+};
+
+const changeOption = (e) => {
+  selectUSA(e);
+  selectUA(e);
 };
 // date of birth
 const checkDate = (min, max) => {
@@ -220,9 +244,11 @@ const onChangeDate = () => {
 const checkPaswword = (text, arr, textError) => {
   if (!regexPassword.test(text.value)) {
     addError(arr, textError);
+    return;
   }
   if (password.value === firstN.value || password.value === lastN.value) {
     addError(arr, CONFIG.password.errDubl);
+    return;
   }
 };
 const onChangePassword = () => {
@@ -270,7 +296,7 @@ const errorAndEmpty = () => {
   }
   console.log(USER_DATA);
   cleanValue();
-  done()
+  done();
 };
 
 const cleanValue = () => {
@@ -295,12 +321,12 @@ const submitHeandler = (e) => {
 
 //add img done
 const done = () => {
-  const background = document.getElementById('background')
-  const img = document.createElement('img')
-  img.src = "./img/done.png"
-  img.alt = 'done'
-  background.append(img)
-}
+  const background = document.getElementById("background");
+  const img = document.createElement("img");
+  img.src = "./img/done.png";
+  img.alt = "done";
+  background.append(img);
+};
 
 firstN.addEventListener("change", onChangeName);
 lastN.addEventListener("change", onChangeLastName);
